@@ -1,2 +1,2 @@
 # WaveNewsFeed
-Obs neews feed using google sheet
+Obs news feed using google sheet
