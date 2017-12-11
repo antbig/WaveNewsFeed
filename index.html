@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live-Feed</title>
+    <style>
+        body {
+            height: 1080px;
+            width: 1920px;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #live-feed {
+            width: 1920px;
+            background-color: #003E72;
+            height: 150px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            display: inline-block;
+        }
+
+        #image {
+            display: inline;
+        }
+
+        #image img {
+            width: 220px;
+            margin-left: 100px;
+        }
+
+        #messageBox {
+            line-height: 150px;
+            top: 0;
+            left: 360px;
+            width: 1200px;
+            height: 150px;
+            position: absolute;
+        }
+
+        #message {
+            font-family: "PT Serif", "Arial";
+            color: white;
+            font-size: 33px;
+            word-wrap: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block; /* FF3, Opera, Safari */
+            line-height: normal;
+            vertical-align: middle;
+        }
+
+        #logo {
+            position: absolute;
+            top: 13.25px;
+            right: 75px;
+        }
+
+        #logo img {
+            width: 210px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="live-feed">
+    <div id="image">
+        <img id="category" src="images/Ecologie.png">
+    </div>
+    <div id="messageBox">
+        <span id="message">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt justo non nulla aliquet, in ornare lectus scelerisque. Nullam posuere volutpat.
+        </span>
+    </div>
+    <div id="logo">
+        <img src="images/Wave24.png">
+    </div>
+</div>
+
+</body>
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script>
+    function update() {
+        var flickerAPI = "http://antbig.fr/enseack/test.php";
+        $.getJSON(flickerAPI, function (data) {
+            $("#category").attr('src','images/'+data["category"]+'.png');
+            $("#message").html(data["message"]);
+        });
+    }
+    setInterval(update, 15000);
+    update();
+</script>
+</html>
